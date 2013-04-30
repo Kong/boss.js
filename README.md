@@ -13,19 +13,21 @@ npm install jobs
 ```javascript
 var Jobs = require('jobs');
 
-var execution = new Jobs.Execution(function(context) {
-	// Define the master process code here
-	
-	var index = 0;
-	setInterval(function() {
-		context.dispatch({num:index++});
-	}, 0);
-
-}, function(message) {
-	// Define the worker code here
-	console.log(process.pid + " received number " + {message.num});
-	
-}, {debug:true, workers:6});
+var execution = new Jobs.Execution(function (context) {
+  // Define the master process code here
+  var index = 0;
+  setInterval(function () {
+    context.dispatch({
+      num: index++
+    });
+  }, 0);
+}, function (message) {
+  // Define the worker code here
+  console.log(process.pid + " received number " + { message.num });
+}, {
+  debug: true, 
+  workers: 6
+});
 
 execution.start();
 ```
