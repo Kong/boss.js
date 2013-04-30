@@ -8,6 +8,29 @@ Load balance your work across multiple processes in a round-robin fashion.
 npm install jobs
 ```
 
+# Usage
+
+```javascript
+var Jobs = require('jobs');
+
+var execution = new Jobs.Execution(function(context) {
+	
+	// Master process code. Use context.dispatch(message) to send a message to a worker.
+
+}, function(message) {
+	
+	// Worker code. The "message" argument is the message object to handle.
+	
+}, options);
+
+execution.start(); // Start the execution
+```
+
+## Options
+
+* `debug`: Set to `true` to enable debugging console information
+* `workers`: The number of workers to execute. If not specified, the total number of cores will be used.
+
 # Example
 
 ```javascript
