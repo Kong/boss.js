@@ -2,6 +2,8 @@
 
 Automatically load balance asyncronous jobs across multiple processes in a round-robin fashion.
 
+It also supports some [Advanced][] features.
+
 # Installation
 
 ```bash
