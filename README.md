@@ -63,7 +63,7 @@ execution.start();
 The `context` variable has two functions that you can use to control the submission flow:
 
 * `context.getRunning()`: Get the number of the current running jobs across all the workers.
-* `context.isAvailable()`: Ask if there is an idle worker that is ready to accept a job. This is useful if you don't want to redistribute all the jobs immediately to the workers, but you prefer to execute them once at a time (max number of concurrent jobs = number of workers).
+* `context.isAvailable()`: Ask if there is at least one idle worker that is ready to accept a job. This is useful if you don't want to redistribute all the jobs immediately to the workers, but you prefer to execute them once at a time (max number of concurrent jobs = number of workers).
 
 For example:
 
@@ -74,7 +74,7 @@ var execution = new Jobalancer.Execution(function (context) {
   // Define the master process code here
   var index = 0;
   setInterval(function () {
-	if (context.isAvailable()) { // Only execute if a worker is available
+	if (context.isAvailable()) { // Only execute if there is at least one worker available
       context.dispatch({
         num: index++
       });
