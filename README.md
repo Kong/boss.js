@@ -17,9 +17,9 @@ var execution = new Jobalancer.Execution(function(context) {
 	
 	// Master process code. Use context.dispatch(message) to send a message to a worker.
 
-}, function(message) {
+}, function(message, next) {
 	
-	// Worker code. The "message" argument is the message object to handle.
+	// Worker code. The "message" argument is the message object to handle. Call next() when the operation has been completed.
 	
 }, options);
 
@@ -44,9 +44,46 @@ var execution = new Jobalancer.Execution(function (context) {
       num: index++
     });
   }, 0);
-}, function (message) {
+}, function (message, next) {
   // Define the worker code here
   console.log(process.pid + " received number " + { message.num });
+  next();
+}, {
+  debug: true, 
+  workers: 6
+});
+
+execution.start();
+```
+
+# Advanced
+
+The `context` variable has two functions that you can use to control the submission flow:
+
+* `context.getRunning()`: Get the number of the current running jobs across all the workers.
+* `context.isAvailable()`: Ask if there is an idle worker that is ready to accept a job. This is useful if you don't want to redistribute all the jobs immediately to the workers, but you prefer to execute them once at a time (max number of concurrent jobs = number of workers).
+
+For example:
+
+```javascript
+var Jobalancer = require('jobalancer');
+
+var execution = new Jobalancer.Execution(function (context) {
+  // Define the master process code here
+  var index = 0;
+  setInterval(function () {
+	if (context.isAvailable()) { // Only execute if a worker is available
+      context.dispatch({
+        num: index++
+      });
+    }
+  }, 0);
+}, function (message, next) {
+  // We're simulating a 1s delay in the worker execution
+  setTimeout(function() {
+    console.log(process.pid + " received number " + message.num);
+    next();
+  }, 1000);
 }, {
   debug: true, 
   workers: 6
