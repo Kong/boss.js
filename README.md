@@ -2,13 +2,25 @@
 
 Automatically load balance asyncronous jobs across multiple processes in a round-robin fashion.
 
-# Installation
+## When to use Jobalancer
+
+Let's say that you need to parse multiple URLs, or ping multiple machines for a given list of IPs. You have a list of URLs or IPs, and you need to process them. Jobalancer allows you to redistribute the work across several processes in a cyclical, round-robin, mode.
+
+It used in production at [Mashape](https://www.mashape.com) to process messages stored in a queue, like RabbitMQ or Amazon SQS.
+
+## Installing npm (node package manager)
+
+```bash
+curl https://npmjs.org/install.sh | sh
+```
+
+## Installing Jobalancer
 
 ```bash
 npm install jobalancer
 ```
 
-# Usage
+## Usage
 
 ```javascript
 var Jobalancer = require('jobalancer');
@@ -28,12 +40,12 @@ var execution = new Jobalancer.Execution(function(context) {
 execution.start(); // Start the execution
 ```
 
-## Options
+### Options
 
 * `debug`: Set to `true` to enable debugging console information.
 * `workers`: The number of workers to execute. If not specified, the total number of CPU cores will be used.
 
-## Example
+### Example
 
 ```javascript
 var Jobalancer = require('jobalancer');
@@ -94,7 +106,7 @@ var execution = new Jobalancer.Execution(function (context) {
 execution.start();
 ```
 
-# License
+## License
 
 The MIT License
 
