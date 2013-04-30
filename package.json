@@ -1,6 +1,6 @@
 {
     "name": "jobalancer",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Automatically load balance asyncronous jobs across multiple processes in a round-robin fashion",
     "author": "Mashape <support@mashape.com>",
     "homepage":"http://www.mashape.com",

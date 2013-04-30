@@ -43,7 +43,7 @@ execution.start(); // Start the execution
 ### Options
 
 * `debug`: Set to `true` to enable debugging console information.
-* `workers`: The number of workers to execute. If not specified, the total number of CPU cores will be used.
+* `workers`: The number of child workers to execute **+ 1**. This number doesn't include the *master worker*, that coordinates the child workers. This means that the number of node processes will always be the number of `workers` + 1. If this option is not specified, the total number of CPU cores **-1** will be used (reserving one slot to the *master worker*)
 
 ### Example
 
