@@ -15,11 +15,13 @@ var Jobalancer = require('jobalancer');
 
 var execution = new Jobalancer.Execution(function(context) {
 	
-	// Master process code. Use context.dispatch(message) to send a message to a worker.
+  // Master process code. Use context.dispatch(message) to send a message to a worker.
+  context.dispatch({an:"object"});
 
 }, function(message, next) {
 	
-	// Worker code. The "message" argument is the message object to handle. Call next() when the operation has been completed.
+  // Worker code. The "message" argument is the message object to handle. Call next() when the operation has been completed.
+  next();
 	
 }, options);
 
@@ -28,8 +30,8 @@ execution.start(); // Start the execution
 
 ## Options
 
-* `debug`: Set to `true` to enable debugging console information
-* `workers`: The number of workers to execute. If not specified, the total number of cores will be used.
+* `debug`: Set to `true` to enable debugging console information.
+* `workers`: The number of workers to execute. If not specified, the total number of CPU cores will be used.
 
 # Example
 
