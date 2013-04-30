@@ -27,12 +27,12 @@ var Jobalancer = require('jobalancer');
 
 var execution = new Jobalancer.Execution(function(context) {
 	
-  // Master process code. Use context.dispatch(message) to send a message to a worker.
+  // Master process code. Use context.dispatch(message) to send a message to a job worker.
   context.dispatch({an:"object"});
 
 }, function(message, next) {
 	
-  // Worker code. The "message" argument is the message object to handle. Call next() when the operation has been completed.
+  // Job worker code. The "message" argument is the message object to handle. Call next() when the operation has been completed.
   next();
 	
 }, options);
@@ -43,7 +43,7 @@ execution.start(); // Start the execution
 ### Options
 
 * `debug`: Set to `true` to enable debugging console information.
-* `workers`: The number of child workers to execute **+ 1**. This number doesn't include the *master worker*, that coordinates the child workers. This means that the number of node processes will always be the number of `workers` + 1. If this option is not specified, the total number of CPU cores **-1** will be used (reserving one slot to the *master worker*)
+* `jobWorkers`: The number of job workers to execute. This number doesn't count the *master worker*, that coordinates the child job workers. This means that the number of node processes will always be the number of `jobWorkers` + 1. If this option is not specified, the total number of CPU cores **-1** will be used.
 
 ### Example
 
@@ -59,12 +59,12 @@ var execution = new Jobalancer.Execution(function (context) {
     });
   }, 0);
 }, function (message, next) {
-  // Define the worker code here
+  // Define the job worker code here
   console.log(process.pid + " received number " + message.num);
   next();
 }, {
   debug: true, 
-  workers: 6
+  jobWorkers: 6
 });
 
 execution.start();
@@ -86,21 +86,18 @@ var execution = new Jobalancer.Execution(function (context) {
   // Define the master process code here
   var index = 0;
   setInterval(function () {
-	if (context.isAvailable()) { // Only execute if there is at least one worker available
+	if (context.isAvailable()) { // Only execute if there is at least one job worker available
       context.dispatch({
         num: index++
       });
     }
   }, 0);
 }, function (message, next) {
-  // We're simulating a 1s delay in the worker execution
+  // We're simulating a 1s delay in the job worker execution
   setTimeout(function() {
     console.log(process.pid + " received number " + message.num);
     next();
   }, 1000);
-}, {
-  debug: true, 
-  workers: 6
 });
 
 execution.start();
