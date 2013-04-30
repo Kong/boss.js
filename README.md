@@ -48,7 +48,7 @@ var execution = new Jobalancer.Execution(function (context) {
   }, 0);
 }, function (message, next) {
   // Define the worker code here
-  console.log(process.pid + " received number " + { message.num });
+  console.log(process.pid + " received number " + message.num);
   next();
 }, {
   debug: true, 
