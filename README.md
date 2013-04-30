@@ -46,7 +46,7 @@ var execution = new Jobalancer.Execution(function (context) {
   }, 0);
 }, function (message) {
   // Define the worker code here
-  console.log(process.pid + " received number " + { message.num });
+  console.log(process.pid + " received number " + message.num);
 }, {
   debug: true, 
   workers: 6
