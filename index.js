@@ -1,1 +1,1 @@
-module.exports = require('./lib/jobs.js');
+module.exports = require('./lib/jobalancer.js');

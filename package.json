@@ -1,7 +1,7 @@
 {
-    "name": "jobs",
+    "name": "jobalancer",
     "version": "1.0.0",
-    "description": "Load balance your work across multiple processes",
+    "description": "Automatically load balance asyncronous jobs across multiple processes in a round-robin fashion",
     "author": "Mashape <support@mashape.com>",
     "homepage":"http://www.mashape.com",
     "dependencies": {
@@ -14,10 +14,10 @@
     "license" : "MIT",
     "repository" : { 
         "type" : "git", 
-		"url" : "https://github.com/Mashape/jobs.js"
+		"url" : "https://github.com/Mashape/jobalancer.js"
     },
     "bugs" : {
-		"url" : "https://github.com/Mashape/jobs.js/issues",
+		"url" : "https://github.com/Mashape/jobalancer.js/issues",
 		"email" : "support@mashape.com"
     }
 }

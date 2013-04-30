@@ -1,19 +1,19 @@
-# Jobs.js
+# Jobalancer.js
 
-Load balance your work across multiple processes in a round-robin fashion.
+Automatically load balance asyncronous jobs across multiple processes in a round-robin fashion.
 
 # Installation
 
 ```bash
-npm install jobs
+npm install jobalancer
 ```
 
 # Usage
 
 ```javascript
-var Jobs = require('jobs');
+var Jobalancer = require('jobalancer');
 
-var execution = new Jobs.Execution(function(context) {
+var execution = new Jobalancer.Execution(function(context) {
 	
 	// Master process code. Use context.dispatch(message) to send a message to a worker.
 
@@ -34,9 +34,9 @@ execution.start(); // Start the execution
 # Example
 
 ```javascript
-var Jobs = require('jobs');
+var Jobalancer = require('jobalancer');
 
-var execution = new Jobs.Execution(function (context) {
+var execution = new Jobalancer.Execution(function (context) {
   // Define the master process code here
   var index = 0;
   setInterval(function () {
