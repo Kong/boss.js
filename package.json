@@ -1,5 +1,5 @@
 {
-    "name": "jobs.js",
+    "name": "jobs",
     "version": "1.0.0",
     "description": "Load balance your work across multiple processes",
     "author": "Mashape <support@mashape.com>",
