@@ -28,8 +28,8 @@ execution.start(); // Start the execution
 
 ## Options
 
-* `debug`: Set to `true` to enable debugging console information
-* `workers`: The number of workers to execute. If not specified, the total number of cores will be used.
+* `debug`: Set to `true` to enable debugging console information.
+* `workers`: The number of workers to execute. If not specified, the total number of CPU cores will be used.
 
 # Example
 
