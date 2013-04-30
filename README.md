@@ -2,8 +2,6 @@
 
 Automatically load balance asyncronous jobs across multiple processes in a round-robin fashion.
 
-It also supports some [Advanced][] features.
-
 # Installation
 
 ```bash
@@ -35,7 +33,7 @@ execution.start(); // Start the execution
 * `debug`: Set to `true` to enable debugging console information.
 * `workers`: The number of workers to execute. If not specified, the total number of CPU cores will be used.
 
-# Example
+## Example
 
 ```javascript
 var Jobalancer = require('jobalancer');
@@ -60,7 +58,7 @@ var execution = new Jobalancer.Execution(function (context) {
 execution.start();
 ```
 
-# Advanced
+## Advanced
 
 The `context` variable has two functions that you can use to control the submission flow:
 
