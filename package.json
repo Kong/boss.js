@@ -1,0 +1,23 @@
+{
+    "name": "jobs.js",
+    "version": "1.0.0",
+    "description": "Load balance your work across multiple processes",
+    "author": "Mashape <support@mashape.com>",
+    "homepage":"http://www.mashape.com",
+    "dependencies": {
+        "colors" : "0.6.0-1"
+    },
+    "private": false,
+    "engines": {
+        "node": ">= 0.8.11"
+    },
+    "license" : "MIT",
+    "repository" : { 
+        "type" : "git", 
+		"url" : "https://github.com/Mashape/jobs.js"
+    },
+    "bugs" : {
+		"url" : "https://github.com/Mashape/jobs.js/issues",
+		"email" : "support@mashape.com"
+    }
+}
