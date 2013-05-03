@@ -1,10 +1,10 @@
-# Jobalancer.js
+# Boss.js
 
 Automatically load balance asyncronous jobs across multiple processes in a round-robin fashion.
 
-## When to use Jobalancer
+## When to use Boss
 
-Let's say that you need to parse multiple URLs, or ping multiple machines for a given list of IPs. If you have a list of URLs or IPs, and you need to process them, Jobalancer allows you to redistribute the work across several processes in a cyclical, round-robin, mode so that the list is entirely processed in multiple parallel jobs.
+Let's say that you need to parse multiple URLs, or ping multiple machines for a given list of IPs. If you have a list of URLs or IPs, and you need to process them, Boss allows you to redistribute the work across several processes in a cyclical, round-robin, mode so that the list is entirely processed in multiple parallel jobs.
 
 It's used in production at [Mashape](https://www.mashape.com) to process messages stored in a queue, like RabbitMQ or Amazon SQS.
 
@@ -14,18 +14,18 @@ It's used in production at [Mashape](https://www.mashape.com) to process message
 curl https://npmjs.org/install.sh | sh
 ```
 
-## Installing Jobalancer
+## Installing Boss
 
 ```bash
-npm install jobalancer
+npm install boss
 ```
 
 ## Usage
 
 ```javascript
-var Jobalancer = require('jobalancer');
+var Boss = require('boss');
 
-var execution = new Jobalancer.Execution(function(context) {
+var execution = new Boss.Execution(function(context) {
 	
   // Master process code. Use context.dispatch(message) to send a message to a job worker.
   context.dispatch({an:"object"});
@@ -48,9 +48,9 @@ execution.start(); // Start the execution
 ### Example
 
 ```javascript
-var Jobalancer = require('jobalancer');
+var Boss = require('boss');
 
-var execution = new Jobalancer.Execution(function (context) {
+var execution = new Boss.Execution(function (context) {
   // Define the master process code here
   var index = 0;
   setInterval(function () {
@@ -80,9 +80,9 @@ The `context` variable has two functions that you can use to control the submiss
 For example:
 
 ```javascript
-var Jobalancer = require('jobalancer');
+var Boss = require('boss');
 
-var execution = new Jobalancer.Execution(function (context) {
+var execution = new Boss.Execution(function (context) {
   // Define the master process code here
   var index = 0;
   setInterval(function () {

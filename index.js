@@ -1,1 +1,1 @@
-module.exports = require('./lib/jobalancer.js');
+module.exports = require('./lib/boss.js');
