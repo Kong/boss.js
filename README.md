@@ -8,12 +8,6 @@ Let's say that you need to parse multiple URLs, or ping multiple machines for a 
 
 It's used in production at [Mashape](https://www.mashape.com) to process messages stored in a queue, like RabbitMQ or Amazon SQS.
 
-## Installing npm (node package manager)
-
-```bash
-curl https://npmjs.org/install.sh | sh
-```
-
 ## Installing Boss
 
 ```bash
@@ -26,15 +20,15 @@ npm install boss
 var Boss = require('boss');
 
 var execution = new Boss.Execution(function(context) {
-	
+
   // Master process code. Use context.dispatch(message) to send a message to a job worker.
   context.dispatch({an:"object"});
 
 }, function(message, next) {
-	
+
   // Job worker code. The "message" argument is the message object to handle. Call next() when the operation has been completed.
   next();
-	
+
 }, options);
 
 execution.start(); // Start the execution
@@ -63,7 +57,7 @@ var execution = new Boss.Execution(function (context) {
   console.log(process.pid + " received number " + message.num);
   next();
 }, {
-  debug: true, 
+  debug: true,
   jobWorkers: 6
 });
 
